@@ -4,4 +4,6 @@ Meaningful user-facing and organizational changes are recorded here. Entries are
 
 ## Unreleased
 
+- Add the Euclidean GCD concept, proof worksheet, examples, and pseudocode.
+- Add tested Python and C++ GCD and LCM implementations.
 - Establish the initial project overview and documentation conventions.

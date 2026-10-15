@@ -1,6 +1,6 @@
 # Mathematical Foundations
 
-An open-source learning project connecting mathematical theory, language-independent pseudocode, algorithmic reasoning, and implementations in multiple programming languages. The repository is at an early stage: its documentation standards are established, and no concept write-ups, implementations, or tests are currently present.
+An open-source learning project connecting mathematical theory, language-independent pseudocode, algorithmic reasoning, and implementations in multiple programming languages. The first concept, the greatest common divisor, now includes mathematical documentation and Python and C++ implementations with tests.
 
 ## Contents
 
@@ -30,10 +30,10 @@ The project aims to make those connections understandable and reusable. Contribu
 
 ## Topics
 
-These are intended areas of study, not claims that topic documentation already exists. Add links here as domain documentation is created.
+Topics with documentation are linked; the others remain planned.
 
 - Discrete mathematics and logic — planned
-- Number theory — planned
+- [Number theory](mathematics/number-theory/README.md) — includes the [GCD concept](mathematics/number-theory/gcd/README.md)
 - Linear algebra and matrices — planned
 - Algebra and polynomials — planned
 - Combinatorics, including Stirling numbers — planned
@@ -43,11 +43,11 @@ These are intended areas of study, not claims that topic documentation already e
 
 ## Language status
 
-No programming-language implementation is currently present. Python, C, C++, Java, Go, Rust, JavaScript, Julia, Haskell, and Wolfram Language are possible future implementation targets; none is currently supported by this repository. A language should be listed as implemented only when its code, usage instructions, and verification expectations are actually available.
+Python and C++ currently have a GCD implementation and tests; see the [concept page](mathematics/number-theory/gcd/README.md) for commands and limitations. No other language implementations are present. A language should be listed as implemented only when its code, usage instructions, and verification expectations are available.
 
 ## Repository structure
 
-The repository currently contains root project and governance documents, shared documentation standards, the existing license, Git ignore rules, and local VS Code settings. The following layout shows both current files and intended content areas; directories will be added as they contain real work.
+The repository contains project and governance documents, shared standards, a number-theory concept, and Python and C++ implementations. The following layout shows the main current files and intended content areas:
 
 ```text
 .
@@ -63,9 +63,10 @@ The repository currently contains root project and governance documents, shared 
 │   ├── pseudocode-standard.md
 │   ├── roadmap.md
 │   └── style-guide.md
-├── mathematics/              # Canonical domain and concept explanations
-├── implementations/          # Language-specific code linked to concepts
-└── tests/                    # Shared fixtures and cross-implementation checks
+├── mathematics/number-theory/ # Canonical GCD theory, examples, and proof worksheet
+├── implementations/python/   # GCD implementation and unit tests
+├── implementations/cpp/      # GCD implementation and standalone test
+└── tests/                    # Reserved for future shared conformance materials
 ```
 
 Each concept belongs in one canonical document under `mathematics/`. Implementations live under `implementations/<language>/` and refer back to that concept, avoiding repeated mathematical explanations. Tests and shared fixtures belong under `tests/`; language-specific tests may live beside their implementation when appropriate. No empty placeholder directories are required.
@@ -78,15 +79,15 @@ Work through a concept from its mathematical definition and assumptions to intui
 
 For integers `a` and `b`, with `a ≥ 0` and `b ≥ 0`, the Euclidean algorithm uses the fact that `gcd(a, b) = gcd(b, a mod b)` while `b > 0`. It repeatedly replaces `(a, b)` with `(b, a mod b)`; when `b = 0`, `a` is the greatest common divisor. For `(48, 18)`, the successive pairs are `(48, 18)`, `(18, 12)`, `(12, 6)`, and `(6, 0)`, so the result is `6`.
 
-This is an illustrative mathematical example only. No implementation or concept page currently exists. A future concept page should specify input conventions (including behavior for negative integers and `(0, 0)`), prove the invariant, and analyze complexity before implementations are linked.
+This calculation illustrates the mathematical reduction; it is not a substitute for the open proof worksheet. The [GCD concept page](mathematics/number-theory/gcd/README.md) links to the theory, implementations, and tests. Its documented convention covers negative integers by magnitude and defines `gcd(0, 0) = 0` for computation.
 
 ## Testing and verification
 
-There is currently no source code, test suite, conformance harness, or project-specific test command. No tests are claimed to have run. As implementations are added, their concept documentation must identify real test commands and any shared conformance checks. Future validation mechanisms will be documented here only after they exist and have been checked.
+The GCD has Python unit tests and a standalone C++ assertion-based test. From the repository root, run the Python tests with `python -m unittest discover -s implementations/python/number-theory/gcd -p "test_*.py"`. Compile and run the C++ test with `g++ -std=c++17 -Wall -Wextra -pedantic implementations/cpp/number-theory/gcd/test_gcd.cpp -o gcd-test.exe; .\\gcd-test.exe` in PowerShell (remove the generated executable afterward). These commands were run successfully in this environment. There is not yet a shared cross-language conformance harness.
 
 ## Getting started
 
-Clone or download the repository and read this overview. There are no setup, build, or test commands at this stage. Browse the existing files with your editor or use Git to inspect changes:
+Clone or download the repository and read this overview. No package installation is needed for the standard-library Python code or standalone C++ test. The GCD page documents how to run each test. Browse the files with your editor or use Git to inspect changes:
 
 ```sh
 git status --short
@@ -101,8 +102,8 @@ Before proposing a topic or implementation, check the existing concept documenta
 
 ## Roadmap
 
-The repository is establishing its documentation and contribution conventions. Planned next steps are to complete the shared standards, add the first researched mathematical concept, then add and verify implementations as contributors choose languages. See the [roadmap](docs/roadmap.md) for the current plan. These items are planned work, not completed features.
+The first mathematical concept and Python and C++ implementations are in place. Future work includes independent completion of the GCD proof worksheet, additional researched number-theory concepts, and language implementations selected by contributors. See the [roadmap](docs/roadmap.md) for planned work.
 
 ## License and acknowledgements
 
-This repository includes the [GNU General Public License, version 3](LICENSE). Contributions are welcome; consult the license text for its terms. Acknowledgements and source references should be credited in the relevant concept documentation and collected here as the project develops. No external source or contributor is being credited in this initial overview.
+This repository includes the [GNU General Public License, version 3](LICENSE). Contributions are welcome; consult the license text for its terms. Acknowledgements and source references should be credited in the relevant concept documentation and collected here as the project develops. The GCD introduction is a standard mathematical topic; no external source or contributor is specifically credited for its documentation.

@@ -12,4 +12,4 @@ Shared fixtures and cross-language conformance material belong under `tests/`; t
 
 An implementation is available only when its files and instructions exist. A language directory alone does not establish support. Update affected navigation and status claims with structural changes. Keep planned work visibly distinct from completed documentation or code. Do not create nested Git repositories.
 
-This describes the intended organization; the current repository has not yet created these content directories.
+The current repository includes the GCD concept under `mathematics/number-theory/` and its Python and C++ implementations under `implementations/`. Other domain and language directories are added only when they contain real content.
